@@ -8,7 +8,7 @@
 	MOV A,#65H  ;HIGHER BYTE OF OPERAND 2 IN A
 	ADDC A,#0ABH ; ADD WITH HIGHER BYTE OF OPERAND 1
 	MOV R0,A  ;STORES MSB OF RESULT IN R0
-	END*/	
+	END	*/
 	
 	
 	
@@ -26,7 +26,8 @@
 	
 
 // FFFF & EF9D multiplication
-/*ORG 0000H
+/*
+ORG 0000H
 	MOV R0,#0FFH ;MSB1
 	MOV R1,#0EFH ;MSB2
 	MOV R2,#0FFH ;LSB1
@@ -62,27 +63,27 @@
 	
 
 //16 bit divisiion repetitive subtraction
-ORG 0000H;
-	MOV R0,#0FFH;		holds the lab of divisor
-	MOV R1,#11H;		holds the mab of divisor
-	MOV R2,#22H;		holds lab of quotient
-	MOV R3,#11H;		holds mab of quotient
-	MOV R4,#00H;		counter to hold remainder lab
-	MOV R5,#00H;		counter to hold remainder mab
-	MOV R6,#00H;		counter to hold quotient lab
-	MOV R7,#00H;		counter to hold quotient mab
-	loop: MOV 40h,R0;	make copy of r0 incase of final remainder saving if mab subtraction results in a borrow
-	MOV A,R0;			mov the lab of divident to accumulator
-	MOV B,R2;			mov the lab of divisor to reg B
+/*ORG 0000H;
+	MOV R0,#0FFH;		holds the lsb of divisor
+	MOV R1,#11H;		holds the msb of divisor
+	MOV R2,#22H;		holds lsb of dividend
+	MOV R3,#11H;		holds msb of dividend
+	MOV R4,#00H;		counter to hold remainder lsb
+	MOV R5,#00H;		counter to hold remainder msb
+	MOV R6,#00H;		counter to hold quotient lsb
+	MOV R7,#00H;		counter to hold quotient msb
+	loop: MOV 40h,R0;	make copy of r0 incase of final remainder saving if msb subtraction results in a borrow
+	MOV A,R0;			mov the lsb of divident to accumulator
+	MOV B,R2;			mov the lsb of divisor to reg B
 	CLR C;				
-	SUBB A,B;			sub of lab bits
+	SUBB A,B;			sub of lsb bits
 	MOV R0,A;
-	MOV 41h,R1;			make a copy of r1 incase of final remainder saving if mab sub results in a borrow
+	MOV 41h,R1;			make a copy of r1 incase of final remainder saving if masb sub results in a borrow
 	JC lab;				
 	back: MOV A,R1;
 	MOV B,R3;
 	CLR C;
-	SUBB A,B;			sub of mab bits
+	SUBB A,B;			sub of msb bits
 	JC mab;
 	MOV R1,A;
 	INC R6;
@@ -93,6 +94,7 @@ ORG 0000H;
 	lab: DEC R1;
 	JMP back;
 	mab:
-	MOV R4,40h;			move the remainder lab to r4
-	MOV R3,41h;			move the remainder mab to r5
+	MOV R4,40h;			move the remainder lsb to r4
+	MOV R3,41h;			move the remainder msb to r5
 	END
+*/
